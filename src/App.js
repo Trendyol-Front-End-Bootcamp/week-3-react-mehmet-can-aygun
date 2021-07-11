@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AppState from "./context/AppState";
 
 import Navbar from "./components/layout/Navbar";
-import Search from "./components/search/Search";
-import Loading from "./components/layout/Loading";
-import CharacterList from "./components/characters/CharacterList";
+import Home from "./components/pages/Home";
+import CharacterDetail from "./components/pages/CharacterDetail";
+import NotFound from "./components/pages/NotFound";
 
 import "./css/App.css";
 
 const App = () => {
-  const [loading, setLoading] = useState(false);
-  const [characters, setCharacters] = useState([]);
-
+  /*
   async function getCharacters() {
     setLoading(true);
 
@@ -27,21 +27,29 @@ const App = () => {
     }
   }
 
-  async function getSearchResults(data) {
-    console.log(data);
+  async function getSearchResults(results) {
+    setCharacters(results);
   }
 
   useEffect(() => {
     // Fetch Characters
     getCharacters();
   }, []);
+  */
 
   return (
-    <div className="App">
-      <Navbar />
-      <Search getSearchResults={getSearchResults} />
-      {loading ? <Loading /> : <CharacterList characters={characters} />}
-    </div>
+    <AppState>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/detail" component={CharacterDetail} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </Router>
+    </AppState>
   );
 };
 
