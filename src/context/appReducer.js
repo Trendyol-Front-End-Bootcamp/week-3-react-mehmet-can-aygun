@@ -1,7 +1,7 @@
 import {
   GET_CHARACTERS,
   SEARCH_CHARACTERS,
-  SET_CHARACTER,
+  GET_CHARACTER,
   SET_LOADING,
 } from "./types";
 
@@ -16,7 +16,7 @@ const reducer = (state, action) => {
         characters: payload,
         loading: false,
       };
-    case SET_CHARACTER:
+    case GET_CHARACTER:
       return {
         ...state,
         character: payload,

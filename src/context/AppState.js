@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
-import { GET_CHARACTERS, SET_LOADING } from "./types";
+import { GET_CHARACTERS, GET_CHARACTER, SET_LOADING } from "./types";
 
 const AppState = (props) => {
   const initialState = {
@@ -60,8 +60,27 @@ const AppState = (props) => {
   };
 
   // Set Character
-  const setCharacter = () => {
-    console.log("set characters");
+  const getCharacter = async (id) => {
+    setLoading();
+
+    try {
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/character/${id}`
+      );
+
+      const data = await res.json();
+
+      if (data.error !== undefined) {
+        console.log("There is an error");
+      } else {
+        dispatch({
+          type: GET_CHARACTER,
+          payload: data,
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   // Set Loading
@@ -77,7 +96,7 @@ const AppState = (props) => {
         loading: state.loading,
         getCharacters,
         searchCharacters,
-        setCharacter,
+        getCharacter,
         setLoading,
       }}
     >
