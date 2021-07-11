@@ -99,20 +99,35 @@ $px-sm: 16px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px;
   border-radius: 12px;
+  transition: background-color 0.3s;
 
-  .img {
+  a {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    transition: color 0.2s;
+  }
+
+  .img-container {
     width: 100%;
     height: 200px;
     margin-bottom: 20px;
     border-radius: 6px;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
 
-    img {
+    .img {
       width: 100%;
       height: 100%;
       border-radius: inherit;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      transition: transform 0.4s;
     }
   }
 
@@ -123,6 +138,18 @@ $px-sm: 16px;
     p {
       margin-bottom: 6px;
     }
+  }
+}
+
+.character-item:hover {
+  background-color: $color-primary;
+
+  a {
+    color: $color-secondary;
+  }
+
+  .img-container .img {
+    transform: scale(1.1);
   }
 }
 
