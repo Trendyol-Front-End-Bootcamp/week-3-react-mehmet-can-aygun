@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
 
 const Navbar = () => {
   return (
     <header className="navbar">
-      Rick And Morty Characters
+      <a href="/" className="logo">
+        <img src="/assets/portal-gun.svg" alt="Portal Gun" />
+        Rick and Morty Characters
+      </a>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
