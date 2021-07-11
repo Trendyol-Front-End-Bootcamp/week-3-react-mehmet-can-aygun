@@ -146,4 +146,65 @@ ul {
 .character-item .info p {
   margin-bottom: 6px;
 }
+
+.loading {
+  height: 150px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loading .gun-container {
+  width: 200px;
+  height: 150px;
+}
+
+.loading .gun-container img {
+  width: 100%;
+  height: 100%;
+}
+
+.loading .beam-container {
+  width: 100px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loading .beam-container .beam {
+  width: 0;
+  height: 12px;
+  background-color: #50bf5a;
+  border-radius: 6px;
+  -webkit-animation: beam 0.5s infinite;
+          animation: beam 0.5s infinite;
+}
+
+@-webkit-keyframes beam {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes beam {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
 /*# sourceMappingURL=App.css.map */

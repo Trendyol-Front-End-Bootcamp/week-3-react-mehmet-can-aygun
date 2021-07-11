@@ -5,7 +5,7 @@ import Search from "./components/search/Search";
 import Loading from "./components/layout/Loading";
 import CharacterList from "./components/characters/CharacterList";
 
-import './App.css';
+import "./css/App.css";
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -21,7 +21,7 @@ const App = () => {
 
       setLoading(false);
 
-      setCharacters(data.results);  
+      setCharacters(data.results);
     } catch (err) {
       console.log(err.message);
     }
@@ -34,20 +34,15 @@ const App = () => {
   useEffect(() => {
     // Fetch Characters
     getCharacters();
-  }, [])
+  }, []);
 
   return (
     <div className="App">
       <Navbar />
       <Search getSearchResults={getSearchResults} />
-      { loading ? (
-        <Loading />
-      ) : (
-        <CharacterList characters={characters} />
-      )}
+      {loading ? <Loading /> : <CharacterList characters={characters} />}
     </div>
   );
-
-}
+};
 
 export default App;
