@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import { useEffect, useState } from "react";
+
+import Navbar from "./components/layout/Navbar";
+import Search from "./components/search/Search";
+import Loading from "./components/layout/Loading";
+import CharacterList from "./components/characters/CharacterList";
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const [loading, setLoading] = useState(false);
+  const [characters, setCharacters] = useState([]);
+
+  async function getCharacters() {
+    setLoading(true);
+
+    try {
+      const res = await fetch("https://rickandmortyapi.com/api/character");
+
+      const data = await res.json();
+
+      setLoading(false);
+
+      setCharacters(data.results);  
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
+
+  async function getSearchResults(data) {
+    console.log(data);
+  }
+
+  useEffect(() => {
+    // Fetch Characters
+    getCharacters();
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Search getSearchResults={getSearchResults} />
+      { loading ? (
+        <Loading />
+      ) : (
+        <CharacterList characters={characters} />
+      )}
     </div>
   );
+
 }
 
 export default App;
