@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppState from "./context/AppState";
 
@@ -10,33 +9,6 @@ import NotFound from "./components/pages/NotFound";
 import "./css/App.css";
 
 const App = () => {
-  /*
-  async function getCharacters() {
-    setLoading(true);
-
-    try {
-      const res = await fetch("https://rickandmortyapi.com/api/character");
-
-      const data = await res.json();
-
-      setLoading(false);
-
-      setCharacters(data.results);
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
-
-  async function getSearchResults(results) {
-    setCharacters(results);
-  }
-
-  useEffect(() => {
-    // Fetch Characters
-    getCharacters();
-  }, []);
-  */
-
   return (
     <AppState>
       <Router>

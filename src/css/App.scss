@@ -13,6 +13,7 @@ ul {
 $color-primary: #24a3a5;
 $color-secondary: #eaeaea;
 $px: 10%;
+$px-sm: 16px;
 
 // Navbar
 .navbar {
@@ -100,14 +101,13 @@ $px: 10%;
   align-items: center;
   padding: 10px;
   border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 
   .img {
     width: 100%;
     height: 200px;
     margin-bottom: 20px;
     border-radius: 6px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
 
     img {
       width: 100%;
@@ -166,5 +166,60 @@ $px: 10%;
   }
   to {
     width: 100%;
+  }
+}
+
+// Media Queries
+@media (max-width: 1024px) {
+  // Character List {
+  .character-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  // Navbar
+  .navbar {
+    padding: 0 $px-sm;
+  }
+
+  // Search Form
+  .search-form {
+    padding: 12px;
+    margin: 0 $px-sm 30px $px-sm;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    .input-group {
+      flex-direction: row;
+
+      label {
+        width: 60px;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .input-group.btn {
+      label {
+        width: 0;
+      }
+    }
+  }
+
+  // Character List {
+  .character-list {
+    padding: 0 $px-sm;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 425px) {
+  // Character List {
+  .character-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }

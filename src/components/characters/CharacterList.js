@@ -1,4 +1,3 @@
-import React from 'react'
 import CharacterItem from "./CaracterItem";
 
 const CharacterList = ({ characters }) => {
@@ -8,7 +7,7 @@ const CharacterList = ({ characters }) => {
         <CharacterItem key={index} character={character} />
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default CharacterList
+export default CharacterList;

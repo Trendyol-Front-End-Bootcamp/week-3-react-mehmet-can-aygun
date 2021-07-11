@@ -5,7 +5,7 @@ import {
   SET_LOADING,
 } from "./types";
 
-const appReducer = (state, action) => {
+const reducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -14,11 +14,13 @@ const appReducer = (state, action) => {
       return {
         ...state,
         characters: payload,
+        loading: false,
       };
     case SET_CHARACTER:
       return {
         ...state,
         character: payload,
+        loading: false,
       };
     case SET_LOADING:
       return {
@@ -30,4 +32,4 @@ const appReducer = (state, action) => {
   }
 };
 
-export default appReducer;
+export default reducer;

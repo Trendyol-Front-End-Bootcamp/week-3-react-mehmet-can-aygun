@@ -1,7 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AppContext from "../../context/appContext";
 
 const Search = ({ getSearchResults }) => {
+  const appContext = useContext(AppContext);
+  const { searchCharacters } = appContext;
+
+  // Form Input Values - Component Level State
   const [name, setName] = useState("");
   const [status, setStatus] = useState("alive");
   const [gender, setGender] = useState("female");
@@ -9,17 +13,7 @@ const Search = ({ getSearchResults }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch(
-        `https://rickandmortyapi.com/api/character/?name=${name}&status=${status}&gender=${gender}`
-      );
-
-      const data = await res.json();
-
-      getSearchResults(data.results);
-    } catch (err) {
-      console.log(err.message);
-    }
+    searchCharacters({ name, status, gender });
   };
 
   return (
@@ -30,6 +24,7 @@ const Search = ({ getSearchResults }) => {
           type="text"
           onChange={(e) => setName(e.target.value)}
           value={name}
+          placeholder="Enter a character name"
         />
       </div>
       <div className="input-group">

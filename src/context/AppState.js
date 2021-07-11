@@ -1,12 +1,7 @@
 import React, { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
-import {
-  GET_CHARACTERS,
-  SEARCH_CHARACTERS,
-  SET_CHARACTER,
-  SET_LOADING,
-} from "./types";
+import { GET_CHARACTERS, SET_LOADING } from "./types";
 
 const AppState = (props) => {
   const initialState = {
@@ -20,12 +15,48 @@ const AppState = (props) => {
 
   // Get Characters
   const getCharacters = async () => {
-    console.log("get characters");
+    setLoading();
+
+    try {
+      const res = await fetch("https://rickandmortyapi.com/api/character");
+
+      const data = await res.json();
+
+      if (data.error !== undefined) {
+        console.log("There is an error");
+      } else {
+        dispatch({
+          type: GET_CHARACTERS,
+          payload: data.results,
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   // Search Characters
-  const searchCharacters = async () => {
-    console.log("search characters");
+  const searchCharacters = async ({ name, status, gender }) => {
+    setLoading();
+
+    try {
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/character/?name=${name}&status=${status}&gender=${gender}`
+      );
+
+      const data = await res.json();
+
+      if (data.error !== undefined) {
+        console.log("There is an error");
+      } else {
+        dispatch({
+          type: GET_CHARACTERS,
+          payload: data.results,
+        });
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   // Set Character
@@ -41,7 +72,7 @@ const AppState = (props) => {
   return (
     <AppContext.Provider
       value={{
-        characters: state.character,
+        characters: state.characters,
         character: state.character,
         loading: state.loading,
         getCharacters,
