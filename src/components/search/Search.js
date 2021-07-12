@@ -3,7 +3,8 @@ import AppContext from "../../context/appContext";
 
 const Search = () => {
   const appContext = useContext(AppContext);
-  const { searchCharacters, setIsSearching, setCurrentPage } = appContext;
+  const { searchCharacters, setIsSearching, pagination, setCurrentPage } =
+    appContext;
 
   // Form Input Values - Component Level State
   const [name, setName] = useState("");
@@ -54,7 +55,15 @@ const Search = () => {
       </div>
       <div className="input-group btn">
         <label>Search Btn</label>
-        <button className="search-btn" onClick={() => setCurrentPage(1)}>
+        <button
+          className="search-btn"
+          onClick={() =>
+            setCurrentPage({
+              pageNumber: 1,
+              pageUrl: pagination.next,
+            })
+          }
+        >
           Search
         </button>
       </div>

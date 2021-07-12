@@ -181,6 +181,7 @@ ul {
 .character-item .info-container {
   width: 100%;
   padding: 20px 10px 10px 20px;
+  position: relative;
 }
 
 .character-item .info-container p {
@@ -190,6 +191,20 @@ ul {
 
 .character-item .info-container p strong {
   color: #82673a;
+}
+
+.character-item .logo-container {
+  width: 200px;
+  position: absolute;
+  bottom: -20px;
+  right: -8px;
+  z-index: -1;
+}
+
+.character-item .logo-container img {
+  max-width: 100%;
+  background-size: cover;
+  background-position: center;
 }
 
 .character-item:hover {

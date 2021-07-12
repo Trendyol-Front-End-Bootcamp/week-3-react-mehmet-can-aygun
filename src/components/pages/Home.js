@@ -7,11 +7,11 @@ import Pagination from "../layout/Pagination";
 
 const Home = () => {
   const appContext = useContext(AppContext);
-  const { getCharacters, characters, loading } = appContext;
+  const { getCharacters, characters, loading, currentPage } = appContext;
 
   useEffect(() => {
     // Make initial call
-    getCharacters();
+    getCharacters(currentPage.pageUrl);
 
     // eslint-disable-next-line
   }, []);

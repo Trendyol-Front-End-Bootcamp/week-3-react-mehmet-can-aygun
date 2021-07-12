@@ -14,7 +14,10 @@ const Pagination = () => {
               className="page-btn"
               onClick={() => {
                 getCharacters(pagination.prev);
-                setCurrentPage(currentPage - 1);
+                setCurrentPage({
+                  pageNumber: currentPage.pageNumber - 1,
+                  pageUrl: pagination.prev,
+                });
               }}
             >
               Previous
@@ -22,7 +25,7 @@ const Pagination = () => {
           )}
 
           <span>
-            {currentPage} / {pagination.pages}
+            {currentPage.pageNumber} / {pagination.pages}
           </span>
 
           {pagination.next && (
@@ -30,7 +33,10 @@ const Pagination = () => {
               className="page-btn"
               onClick={() => {
                 getCharacters(pagination.next);
-                setCurrentPage(currentPage + 1);
+                setCurrentPage({
+                  pageNumber: currentPage.pageNumber + 1,
+                  pageUrl: pagination.next,
+                });
               }}
             >
               Next

@@ -26,6 +26,10 @@ const CaracterItem = ({ character }) => {
           <p>
             <strong>Location:</strong> {location.name}
           </p>
+
+          <div className="logo-container">
+            <img src="/assets/logo.png" alt="Rick and Morty logo" />
+          </div>
         </div>
       </Link>
     </li>

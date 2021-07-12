@@ -17,7 +17,10 @@ const AppState = (props) => {
     character: null,
     loading: false,
     pagination: null,
-    currentPage: 1,
+    currentPage: {
+      pageNumber: 1,
+      pageUrl: "https://rickandmortyapi.com/api/character/?page=1",
+    },
     isSearching: false,
     error: null,
   };
@@ -154,10 +157,10 @@ const AppState = (props) => {
   };
 
   // Set Current Page
-  const setCurrentPage = (page) => {
+  const setCurrentPage = (pageInfo) => {
     dispatch({
       type: SET_CURRENT_PAGE,
-      payload: page,
+      payload: pageInfo,
     });
   };
 
