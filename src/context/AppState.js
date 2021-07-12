@@ -5,7 +5,9 @@ import {
   GET_CHARACTERS,
   GET_CHARACTER,
   CLEAN_CHARACTER,
+  SET_IS_SEARCHING,
   SET_LOADING,
+  SET_CURRENT_PAGE,
 } from "./types";
 
 const AppState = (props) => {
@@ -13,19 +15,22 @@ const AppState = (props) => {
     characters: [],
     character: null,
     loading: false,
+    pagination: null,
+    currentPage: 1,
+    isSearching: false,
     error: null,
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Get Characters
-  const getCharacters = async (page) => {
+  const getCharacters = async (
+    url = "https://rickandmortyapi.com/api/character/?page=1"
+  ) => {
     setLoading();
 
     try {
-      const res = await fetch(
-        `https://rickandmortyapi.com/api/character/?page=${page}`
-      );
+      const res = await fetch(url);
 
       const data = await res.json();
 
@@ -97,6 +102,22 @@ const AppState = (props) => {
     });
   };
 
+  // Set isSearching
+  const setIsSearching = (condition) => {
+    dispatch({
+      type: SET_IS_SEARCHING,
+      payload: condition,
+    });
+  };
+
+  // Set Current Page
+  const setCurrentPage = (page) => {
+    dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: page,
+    });
+  };
+
   // Set Loading
   const setLoading = () => {
     dispatch({ SET_LOADING });
@@ -107,12 +128,16 @@ const AppState = (props) => {
       value={{
         characters: state.characters,
         character: state.character,
+        pagination: state.pagination,
         currentPage: state.currentPage,
+        isSearching: state.isSearching,
         loading: state.loading,
         getCharacters,
         searchCharacters,
         getCharacter,
         cleanCharacter,
+        setIsSearching,
+        setCurrentPage,
         setLoading,
       }}
     >

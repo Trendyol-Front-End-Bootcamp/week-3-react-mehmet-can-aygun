@@ -2,6 +2,8 @@ import {
   GET_CHARACTERS,
   GET_CHARACTER,
   CLEAN_CHARACTER,
+  SET_IS_SEARCHING,
+  SET_CURRENT_PAGE,
   SET_LOADING,
 } from "./types";
 
@@ -13,6 +15,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         characters: payload.results,
+        pagination: payload.info,
         loading: false,
       };
     case GET_CHARACTER:
@@ -25,6 +28,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         character: null,
+      };
+    case SET_IS_SEARCHING:
+      return {
+        ...state,
+        isSearching: payload,
+      };
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: payload,
       };
     case SET_LOADING:
       return {

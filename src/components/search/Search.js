@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import AppContext from "../../context/appContext";
 
-const Search = ({ getSearchResults }) => {
+const Search = () => {
   const appContext = useContext(AppContext);
-  const { searchCharacters } = appContext;
+  const { searchCharacters, setIsSearching, setCurrentPage } = appContext;
 
   // Form Input Values - Component Level State
   const [name, setName] = useState("");
@@ -12,6 +12,8 @@ const Search = ({ getSearchResults }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsSearching(true);
 
     searchCharacters({ name, status, gender });
   };
@@ -52,7 +54,9 @@ const Search = ({ getSearchResults }) => {
       </div>
       <div className="input-group btn">
         <label>Search Btn</label>
-        <button className="search-btn">Search</button>
+        <button className="search-btn" onClick={() => setCurrentPage(1)}>
+          Search
+        </button>
       </div>
     </form>
   );

@@ -1,38 +1,47 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AppContext from "../../context/appContext";
 
-const Pagination = ({ pagination }) => {
+const Pagination = () => {
   const appContext = useContext(AppContext);
-  const { getCharacters } = appContext;
+  const { getCharacters, pagination, currentPage, setCurrentPage } = appContext;
 
-  const [currentPage, setCurrentPage] = useState(1);
+  if (pagination) {
+    return (
+      <div className="pagination">
+        <div className="page-btns-container">
+          {pagination.prev && (
+            <button
+              className="page-btn"
+              onClick={() => {
+                getCharacters(pagination.prev);
+                setCurrentPage(currentPage - 1);
+              }}
+            >
+              Previous
+            </button>
+          )}
 
-  const printPageButtons = () => {
-    let buttons = [];
+          <span>
+            {currentPage} / {pagination.pages}
+          </span>
 
-    for (let i = 1; i <= 5; i++) {
-      buttons.push(
-        <button
-          key={i}
-          className={i === currentPage ? "page-btn active" : "page-btn"}
-          onClick={() => {
-            getCharacters(i);
-            setCurrentPage(i);
-          }}
-        >
-          {i}
-        </button>
-      );
-    }
-
-    return buttons;
-  };
-
-  return (
-    <div className="pagination">
-      <div className="page-btns-container">{printPageButtons()}</div>
-    </div>
-  );
+          {pagination.next && (
+            <button
+              className="page-btn"
+              onClick={() => {
+                getCharacters(pagination.next);
+                setCurrentPage(currentPage + 1);
+              }}
+            >
+              Next
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  } else {
+    return <div className="pagination">Loading...</div>;
+  }
 };
 
 export default Pagination;

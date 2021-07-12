@@ -7,7 +7,7 @@ import Pagination from "../layout/Pagination";
 
 const Home = () => {
   const appContext = useContext(AppContext);
-  const { getCharacters, characters, loading, pagination } = appContext;
+  const { getCharacters, characters, loading } = appContext;
 
   useEffect(() => {
     // Make initial call
@@ -23,8 +23,9 @@ const Home = () => {
         <Loading />
       ) : (
         <>
-          <Pagination pagination={pagination} />
+          <Pagination />
           <CharacterList characters={characters} />
+          <Pagination />
         </>
       )}
     </main>

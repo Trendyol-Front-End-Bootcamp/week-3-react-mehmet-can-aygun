@@ -97,7 +97,8 @@ $px-sm: 16px;
     }
 
     button:hover {
-      background-color: darken($color-primary, 5);
+      background-color: $color-tertiary;
+      color: $color-secondary;
     }
   }
 }
@@ -328,7 +329,7 @@ $px-sm: 16px;
     justify-content: center;
 
     .page-btn {
-      width: 30px;
+      padding: 0 6px;
       height: 30px;
       border: none;
       border-radius: 6px;
@@ -336,20 +337,80 @@ $px-sm: 16px;
       background-color: $color-primary;
       color: $color-tertiary;
       cursor: pointer;
-
-      &:not(:last-child) {
-        margin-right: 6px;
-      }
     }
 
     .page-btn.active {
-      background-color: $color-brown;
+      background-color: $color-tertiary;
       color: $color-secondary;
     }
 
     .page-btn:hover {
-      background-color: darken($color-primary, 5);
+      background-color: $color-tertiary;
+      color: $color-secondary;
     }
+
+    span {
+      height: 30px;
+      margin: 0 8px;
+      padding: 0 6px;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: $color-secondary;
+      color: darken($color-secondary, 40);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+// Search Resulsts Container
+.search-results-container {
+  padding: 10px $px;
+  margin-bottom: 30px;
+
+  button {
+    display: inline-block;
+    width: 250px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    background-color: #cf4848;
+    color: $color-secondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: relative;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+
+  button::before,
+  button::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 10px);
+    left: 20px;
+    width: 2px;
+    height: 20px;
+    background-color: $color-secondary;
+    transition: left 0.3s;
+    transform-origin: center;
+  }
+
+  button::before {
+    transform: rotate(45deg);
+  }
+
+  button::after {
+    transform: rotate(-45deg);
+  }
+
+  button:hover {
+    background-color: #a02c2c;
   }
 }
 
