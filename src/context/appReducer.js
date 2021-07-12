@@ -1,7 +1,7 @@
 import {
   GET_CHARACTERS,
-  SEARCH_CHARACTERS,
   GET_CHARACTER,
+  CLEAN_CHARACTER,
   SET_LOADING,
 } from "./types";
 
@@ -10,10 +10,9 @@ const reducer = (state, action) => {
 
   switch (type) {
     case GET_CHARACTERS:
-    case SEARCH_CHARACTERS:
       return {
         ...state,
-        characters: payload,
+        characters: payload.results,
         loading: false,
       };
     case GET_CHARACTER:
@@ -21,6 +20,11 @@ const reducer = (state, action) => {
         ...state,
         character: payload,
         loading: false,
+      };
+    case CLEAN_CHARACTER:
+      return {
+        ...state,
+        character: null,
       };
     case SET_LOADING:
       return {

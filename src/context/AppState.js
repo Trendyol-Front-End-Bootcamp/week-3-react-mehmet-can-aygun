@@ -1,7 +1,12 @@
 import React, { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
-import { GET_CHARACTERS, GET_CHARACTER, SET_LOADING } from "./types";
+import {
+  GET_CHARACTERS,
+  GET_CHARACTER,
+  CLEAN_CHARACTER,
+  SET_LOADING,
+} from "./types";
 
 const AppState = (props) => {
   const initialState = {
@@ -14,11 +19,13 @@ const AppState = (props) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
   // Get Characters
-  const getCharacters = async () => {
+  const getCharacters = async (page) => {
     setLoading();
 
     try {
-      const res = await fetch("https://rickandmortyapi.com/api/character");
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/character/?page=${page}`
+      );
 
       const data = await res.json();
 
@@ -27,7 +34,7 @@ const AppState = (props) => {
       } else {
         dispatch({
           type: GET_CHARACTERS,
-          payload: data.results,
+          payload: data,
         });
       }
     } catch (err) {
@@ -51,7 +58,7 @@ const AppState = (props) => {
       } else {
         dispatch({
           type: GET_CHARACTERS,
-          payload: data.results,
+          payload: data,
         });
       }
     } catch (err) {
@@ -59,7 +66,7 @@ const AppState = (props) => {
     }
   };
 
-  // Set Character
+  // Get Single Character
   const getCharacter = async (id) => {
     setLoading();
 
@@ -83,6 +90,13 @@ const AppState = (props) => {
     }
   };
 
+  // Clean Character
+  const cleanCharacter = () => {
+    dispatch({
+      type: CLEAN_CHARACTER,
+    });
+  };
+
   // Set Loading
   const setLoading = () => {
     dispatch({ SET_LOADING });
@@ -93,10 +107,12 @@ const AppState = (props) => {
       value={{
         characters: state.characters,
         character: state.character,
+        currentPage: state.currentPage,
         loading: state.loading,
         getCharacters,
         searchCharacters,
         getCharacter,
+        cleanCharacter,
         setLoading,
       }}
     >

@@ -5,7 +5,7 @@ import Loading from "../layout/Loading";
 
 const CharacterDetail = (props) => {
   const appContext = useContext(AppContext);
-  const { getCharacter, character } = appContext;
+  const { getCharacter, character, cleanCharacter } = appContext;
 
   useEffect(() => {
     // Get single character with params id
@@ -17,11 +17,9 @@ const CharacterDetail = (props) => {
   if (!character) {
     return <Loading />;
   } else {
-    console.log(character);
-
     return (
       <main className="character-detail-page">
-        <Link to="/" className="back-link">
+        <Link to="/" className="back-link" onClick={() => cleanCharacter()}>
           Go Back
         </Link>
 

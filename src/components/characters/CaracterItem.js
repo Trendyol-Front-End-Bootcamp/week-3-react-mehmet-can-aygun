@@ -20,9 +20,6 @@ const CaracterItem = ({ character }) => {
           <p>
             <strong>Gender:</strong> {character.gender}
           </p>
-          <p>
-            <strong>Origin:</strong> {character.origin.name}
-          </p>
         </div>
       </Link>
     </li>
