@@ -3,8 +3,7 @@ import AppContext from "../../context/appContext";
 
 const Search = () => {
   const appContext = useContext(AppContext);
-  const { searchCharacters, setIsSearching, pagination, setCurrentPage } =
-    appContext;
+  const { searchCharacters, setIsSearching, setCurrentPage } = appContext;
 
   // Form Input Values - Component Level State
   const [name, setName] = useState("");
@@ -60,7 +59,9 @@ const Search = () => {
           onClick={() =>
             setCurrentPage({
               pageNumber: 1,
-              pageUrl: pagination.next,
+              pageUrl: `https://rickandmortyapi.com/api/character/?page=1${
+                name && "&name=" + name
+              }&status=${status}&gender=${gender}`,
             })
           }
         >
