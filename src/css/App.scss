@@ -263,19 +263,9 @@ $px-sm: 16px;
 
       .episodes-list {
         margin-top: 10px;
-        display: flex;
 
         li {
-          width: 40px;
-          height: 40px;
-          margin-right: 10px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
           font-size: 18px;
-          border-radius: 50%;
-          background-color: $color-tertiary;
-          color: $color-secondary;
         }
       }
     }
@@ -504,6 +494,15 @@ $px-sm: 16px;
       .detail-list li {
         font-size: 16px;
         padding: 8px 0;
+
+        .episodes-list {
+          margin-top: 0px;
+
+          li {
+            font-size: 14px;
+            padding: 4px;
+          }
+        }
       }
     }
   }

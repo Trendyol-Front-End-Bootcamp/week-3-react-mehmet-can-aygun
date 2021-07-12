@@ -4,6 +4,7 @@ import AppReducer from "./appReducer";
 import {
   GET_CHARACTERS,
   GET_CHARACTER,
+  GET_CHARACTER_EPISODES,
   CLEAN_CHARACTER,
   SET_IS_SEARCHING,
   SET_LOADING,
@@ -89,7 +90,49 @@ const AppState = (props) => {
           type: GET_CHARACTER,
           payload: data,
         });
+
+        getCharacterEpisodes(data.episode);
       }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  // Get Character Episodes
+  const getCharacterEpisodes = async (episodes) => {
+    let episodesArr = [];
+    let returnArr = [];
+
+    if (episodes.length <= 5) {
+      episodes
+        .slice()
+        .reverse()
+        .forEach((ep) => episodesArr.push(ep.split("episode/")[1]));
+    } else {
+      episodes
+        .slice()
+        .reverse()
+        .filter((ep, index) => index < 5)
+        .forEach((ep, index) => episodesArr.push(ep.split("episode/")[1]));
+    }
+
+    try {
+      const res = await fetch(
+        `https://rickandmortyapi.com/api/episode/${episodesArr.join(",")}`
+      );
+
+      const data = await res.json();
+
+      if (episodesArr.length === 1) {
+        returnArr = [data];
+      } else {
+        returnArr = data;
+      }
+
+      dispatch({
+        type: GET_CHARACTER_EPISODES,
+        payload: returnArr,
+      });
     } catch (err) {
       console.log(err.message);
     }

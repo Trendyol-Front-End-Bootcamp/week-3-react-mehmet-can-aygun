@@ -7,21 +7,6 @@ const CharacterDetail = (props) => {
   const appContext = useContext(AppContext);
   const { getCharacter, character, cleanCharacter } = appContext;
 
-  const printLastFiveEpisodes = (episodes) => {
-    if (episodes.length <= 5) {
-      // Return all
-      return episodes.map((e, index) => (
-        <li key={index}>{e.substr(40, 42)}</li>
-      ));
-    } else {
-      return episodes
-        .slice()
-        .reverse()
-        .filter((e, index) => index < 5)
-        .map((e, index) => <li key={index}>{e.substr(40, 42)}</li>);
-    }
-  };
-
   useEffect(() => {
     // Get single character with params id
     getCharacter(props.match.params.id);
@@ -32,6 +17,17 @@ const CharacterDetail = (props) => {
   if (!character) {
     return <Loading />;
   } else {
+    const {
+      name,
+      image,
+      species,
+      gender,
+      status,
+      location,
+      origin,
+      characterEpisodes,
+    } = character;
+
     return (
       <main className="character-detail-page">
         <Link to="/" className="back-link" onClick={() => cleanCharacter()}>
@@ -39,37 +35,45 @@ const CharacterDetail = (props) => {
         </Link>
 
         <h1 className="detail-title">
-          Details for <span>{character.name}</span>
+          Details for <span>{name}</span>
         </h1>
 
         <div className="character-container">
           <div className="img-container">
             <div
               className="img"
-              style={{ backgroundImage: `url(${character.image})` }}
+              style={{ backgroundImage: `url(${image})` }}
             ></div>
           </div>
           <div className="info">
             <ul className="detail-list">
               <li>
-                <span>Species:</span> {character.species}
+                <span>Species:</span> {species}
               </li>
               <li>
-                <span>Gender:</span> {character.gender}
+                <span>Gender:</span> {gender}
               </li>
               <li>
-                <span>Status:</span> {character.status}
+                <span>Status:</span> {status}
               </li>
               <li>
-                <span>Location:</span> {character.location.name}
+                <span>Location:</span> {location.name}
               </li>
               <li>
-                <span>Origin:</span> {character.origin.name}
+                <span>Origin:</span> {origin.name}
               </li>
               <li>
                 <span>Last Episodes:</span>
                 <ul className="episodes-list">
-                  {printLastFiveEpisodes(character.episode)}
+                  {characterEpisodes &&
+                    characterEpisodes
+                      .slice()
+                      .reverse()
+                      .map((ep) => (
+                        <li key={ep.id}>
+                          &#8212; <b>{ep.episode}</b>. {ep.name} ({ep.air_date})
+                        </li>
+                      ))}
                 </ul>
               </li>
             </ul>

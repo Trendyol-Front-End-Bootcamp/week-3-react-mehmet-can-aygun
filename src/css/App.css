@@ -305,28 +305,10 @@ ul {
 
 .character-container .info .detail-list > li .episodes-list {
   margin-top: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .character-container .info .detail-list > li .episodes-list li {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   font-size: 18px;
-  border-radius: 50%;
-  background-color: #42496e;
-  color: #eaeaea;
 }
 
 .back-link {
@@ -577,6 +559,13 @@ ul {
   .character-container .info .detail-list li {
     font-size: 16px;
     padding: 8px 0;
+  }
+  .character-container .info .detail-list li .episodes-list {
+    margin-top: 0px;
+  }
+  .character-container .info .detail-list li .episodes-list li {
+    font-size: 14px;
+    padding: 4px;
   }
 }
 /*# sourceMappingURL=App.css.map */

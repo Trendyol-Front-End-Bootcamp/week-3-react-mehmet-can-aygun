@@ -1,6 +1,7 @@
 import {
   GET_CHARACTERS,
   GET_CHARACTER,
+  GET_CHARACTER_EPISODES,
   CLEAN_CHARACTER,
   SET_IS_SEARCHING,
   SET_CURRENT_PAGE,
@@ -23,6 +24,11 @@ const reducer = (state, action) => {
         ...state,
         character: payload,
         loading: false,
+      };
+    case GET_CHARACTER_EPISODES:
+      return {
+        ...state,
+        character: { ...state.character, characterEpisodes: payload },
       };
     case CLEAN_CHARACTER:
       return {
