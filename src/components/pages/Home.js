@@ -25,7 +25,6 @@ const Home = () => {
         <>
           <Pagination pagination={pagination} />
           <CharacterList characters={characters} />
-          <Pagination pagination={pagination} />
         </>
       )}
     </main>

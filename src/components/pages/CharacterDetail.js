@@ -7,6 +7,21 @@ const CharacterDetail = (props) => {
   const appContext = useContext(AppContext);
   const { getCharacter, character, cleanCharacter } = appContext;
 
+  const printLastFiveEpisodes = (episodes) => {
+    if (episodes.length <= 5) {
+      // Return all
+      return episodes.map((e, index) => (
+        <li key={index}>{e.substr(40, 42)}</li>
+      ));
+    } else {
+      return episodes
+        .slice()
+        .reverse()
+        .filter((e, index) => index < 5)
+        .map((e, index) => <li key={index}>{e.substr(40, 42)}</li>);
+    }
+  };
+
   useEffect(() => {
     // Get single character with params id
     getCharacter(props.match.params.id);
@@ -52,7 +67,10 @@ const CharacterDetail = (props) => {
                 <span>Origin:</span> {character.origin.name}
               </li>
               <li>
-                <span>Episodes:</span> {character.episode.length}
+                <span>Last Episodes:</span>
+                <ul className="episodes-list">
+                  {printLastFiveEpisodes(character.episode)}
+                </ul>
               </li>
             </ul>
           </div>
