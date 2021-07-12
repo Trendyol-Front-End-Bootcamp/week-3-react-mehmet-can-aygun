@@ -1,24 +1,30 @@
 import { Link } from "react-router-dom";
 
 const CaracterItem = ({ character }) => {
+  const { id, image, name, gender, species, status, location } = character;
+
   return (
     <li className="character-item">
-      <Link to={`/detail/${character.id}`}>
+      <Link to={`/detail/${id}`}>
         <div className="img-container">
+          <h3>{name}</h3>
           <div
             className="img"
-            style={{ backgroundImage: `url(${character.image})` }}
+            style={{ backgroundImage: `url(${image})` }}
           ></div>
         </div>
-        <div className="info">
+        <div className="info-container">
           <p>
-            <strong>Name:</strong> {character.name}
+            <strong>Gender:</strong> {gender}
           </p>
           <p>
-            <strong>Species:</strong> {character.species}
+            <strong>Species:</strong> {species}
           </p>
           <p>
-            <strong>Gender:</strong> {character.gender}
+            <strong>Status:</strong> {status}
+          </p>
+          <p>
+            <strong>Location:</strong> {location.name}
           </p>
         </div>
       </Link>
