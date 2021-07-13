@@ -7,7 +7,15 @@ import Pagination from "../layout/Pagination";
 
 const Home = () => {
   const appContext = useContext(AppContext);
-  const { getCharacters, characters, loading, currentPage } = appContext;
+  const {
+    getCharacters,
+    characters,
+    loading,
+    currentPage,
+    setCurrentPage,
+    isSearching,
+    setIsSearching,
+  } = appContext;
 
   useEffect(() => {
     // Make initial call

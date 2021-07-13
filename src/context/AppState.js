@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import { useReducer } from "react";
 import AppContext from "./appContext";
 import AppReducer from "./appReducer";
 import {
@@ -39,7 +39,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error");
+        console.log("There is an error", data.error);
       } else {
         dispatch({
           type: GET_CHARACTERS,
@@ -63,7 +63,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error");
+        console.log("There is an error", data.error);
       } else {
         dispatch({
           type: GET_CHARACTERS,
@@ -87,7 +87,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error");
+        console.log("There is an error", data.error);
       } else {
         dispatch({
           type: GET_CHARACTER,

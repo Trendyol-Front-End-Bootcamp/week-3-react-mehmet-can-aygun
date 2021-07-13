@@ -7,8 +7,8 @@ const Search = () => {
 
   // Form Input Values - Component Level State
   const [name, setName] = useState("");
-  const [status, setStatus] = useState("alive");
-  const [gender, setGender] = useState("female");
+  const [status, setStatus] = useState("");
+  const [gender, setGender] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,18 +23,19 @@ const Search = () => {
       <div className="input-group">
         <label>Name</label>
         <input
-          type="text"
+          type="search"
           onChange={(e) => setName(e.target.value)}
           value={name}
-          placeholder="Enter a character name"
+          placeholder="Enter character name"
         />
       </div>
       <div className="input-group">
         <label>Status</label>
         <select
           onChange={(e) => setStatus(e.target.value)}
-          defaultValue="alive"
+          defaultValue={status}
         >
+          <option value="">None</option>
           <option value="alive">Alive</option>
           <option value="dead">Dead</option>
           <option value="unknown">Unknown</option>
@@ -44,8 +45,9 @@ const Search = () => {
         <label>Gender</label>
         <select
           onChange={(e) => setGender(e.target.value)}
-          defaultValue="female"
+          defaultValue={gender}
         >
+          <option value="">None</option>
           <option value="female">Female</option>
           <option value="male">Male</option>
           <option value="genderless">Genderless</option>
