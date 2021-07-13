@@ -27,7 +27,7 @@ const Pagination = () => {
               });
             }}
           >
-            Clear Search Results
+            Clear
           </button>
         )}
 

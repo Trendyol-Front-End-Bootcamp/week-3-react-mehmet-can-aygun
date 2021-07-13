@@ -8,6 +8,7 @@ import {
   CLEAN_CHARACTER,
   SET_IS_SEARCHING,
   SET_LOADING,
+  SET_ERROR,
   SET_CURRENT_PAGE,
 } from "./types";
 
@@ -22,7 +23,7 @@ const AppState = (props) => {
       pageUrl: "https://rickandmortyapi.com/api/character/?page=1",
     },
     isSearching: false,
-    error: null,
+    error: "",
   };
 
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -39,7 +40,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error", data.error);
+        setError(data.error);
       } else {
         dispatch({
           type: GET_CHARACTERS,
@@ -63,7 +64,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error", data.error);
+        setError(data.error);
       } else {
         dispatch({
           type: GET_CHARACTERS,
@@ -87,7 +88,7 @@ const AppState = (props) => {
       const data = await res.json();
 
       if (data.error !== undefined) {
-        console.log("There is an error", data.error);
+        setError(data.error);
       } else {
         dispatch({
           type: GET_CHARACTER,
@@ -169,6 +170,14 @@ const AppState = (props) => {
     dispatch({ SET_LOADING });
   };
 
+  // Set Error
+  const setError = (err) => {
+    dispatch({
+      type: SET_ERROR,
+      payload: err,
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -177,6 +186,7 @@ const AppState = (props) => {
         pagination: state.pagination,
         currentPage: state.currentPage,
         isSearching: state.isSearching,
+        error: state.error,
         loading: state.loading,
         getCharacters,
         searchCharacters,
@@ -185,6 +195,7 @@ const AppState = (props) => {
         setIsSearching,
         setCurrentPage,
         setLoading,
+        setError,
       }}
     >
       {props.children}

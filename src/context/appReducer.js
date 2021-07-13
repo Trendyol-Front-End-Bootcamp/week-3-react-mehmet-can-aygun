@@ -5,6 +5,7 @@ import {
   CLEAN_CHARACTER,
   SET_IS_SEARCHING,
   SET_CURRENT_PAGE,
+  SET_ERROR,
   SET_LOADING,
 } from "./types";
 
@@ -49,6 +50,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case SET_ERROR:
+      return {
+        ...state,
+        error: payload,
       };
     default:
       return state;

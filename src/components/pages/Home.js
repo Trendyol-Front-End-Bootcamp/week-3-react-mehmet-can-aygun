@@ -4,18 +4,11 @@ import Search from "../search/Search";
 import Loading from "../layout/Loading";
 import CharacterList from "../characters/CharacterList";
 import Pagination from "../layout/Pagination";
+import NotFound from "../pages/NotFound";
 
 const Home = () => {
   const appContext = useContext(AppContext);
-  const {
-    getCharacters,
-    characters,
-    loading,
-    currentPage,
-    setCurrentPage,
-    isSearching,
-    setIsSearching,
-  } = appContext;
+  const { getCharacters, characters, loading, currentPage, error } = appContext;
 
   useEffect(() => {
     // Make initial call
@@ -29,6 +22,8 @@ const Home = () => {
       <Search />
       {loading ? (
         <Loading />
+      ) : error ? (
+        <NotFound />
       ) : (
         <>
           <Pagination />
