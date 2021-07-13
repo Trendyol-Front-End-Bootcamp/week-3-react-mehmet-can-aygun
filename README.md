@@ -28,4 +28,4 @@ Rick and Morty API kullanarak karakterleri ve detay sayfalarını ekrana yazdır
 
 ## Demo
 
-[Rick and Morty Characters]() | [mehmetcanaygun.com](https://mehmetcanaygun.com)
+[Rick and Morty Characters](https://mca-fe-bootcamp-rick-and-morty-characters.netlify.app/) | [mehmetcanaygun.com](https://mehmetcanaygun.com)
