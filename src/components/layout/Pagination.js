@@ -69,7 +69,7 @@ const Pagination = () => {
       </div>
     );
   } else {
-    return <div className="pagination">Loading...</div>;
+    return null;
   }
 };
 

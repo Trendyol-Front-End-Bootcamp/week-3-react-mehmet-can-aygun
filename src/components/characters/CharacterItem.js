@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-const CaracterItem = ({ character }) => {
+const CharacterItem = ({ character }) => {
   const { id, image, name, gender, species, status, location } = character;
 
   return (
@@ -36,4 +37,8 @@ const CaracterItem = ({ character }) => {
   );
 };
 
-export default CaracterItem;
+CharacterItem.propTypes = {
+  character: PropTypes.object.isRequired,
+};
+
+export default CharacterItem;

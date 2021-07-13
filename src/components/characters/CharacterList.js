@@ -1,4 +1,5 @@
-import CharacterItem from "./CaracterItem";
+import CharacterItem from "./CharacterItem";
+import PropTypes from "prop-types";
 
 const CharacterList = ({ characters }) => {
   return (
@@ -8,6 +9,10 @@ const CharacterList = ({ characters }) => {
       ))}
     </ul>
   );
+};
+
+CharacterList.propTypes = {
+  characters: PropTypes.array.isRequired,
 };
 
 export default CharacterList;

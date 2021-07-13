@@ -7,22 +7,22 @@ import {
   GET_CHARACTER_EPISODES,
   CLEAN_CHARACTER,
   SET_IS_SEARCHING,
-  SET_LOADING,
-  SET_ERROR,
   SET_CURRENT_PAGE,
+  SET_ERROR,
+  SET_LOADING,
 } from "./types";
 
 const AppState = (props) => {
   const initialState = {
     characters: [],
     character: null,
-    loading: false,
     pagination: null,
     currentPage: {
       pageNumber: 1,
       pageUrl: "https://rickandmortyapi.com/api/character/?page=1",
     },
     isSearching: false,
+    loading: false,
     error: "",
   };
 

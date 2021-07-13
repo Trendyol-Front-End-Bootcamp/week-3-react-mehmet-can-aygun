@@ -10,7 +10,7 @@ const Search = () => {
   const [status, setStatus] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     setIsSearching(true);
@@ -55,7 +55,6 @@ const Search = () => {
         </select>
       </div>
       <div className="input-group btn">
-        <label>Search Btn</label>
         <button
           className="search-btn"
           onClick={() =>

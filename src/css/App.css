@@ -253,8 +253,9 @@ ul {
   padding: 0 6px;
 }
 
-.search-form .input-group.btn label {
-  color: transparent;
+.search-form .input-group.btn {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 .search-form .input-group.btn button {

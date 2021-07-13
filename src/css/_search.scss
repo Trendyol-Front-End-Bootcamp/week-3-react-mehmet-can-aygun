@@ -34,9 +34,7 @@
   }
 
   .input-group.btn {
-    label {
-      color: transparent;
-    }
+    align-self: flex-end;
 
     button {
       background-color: $color-primary;
