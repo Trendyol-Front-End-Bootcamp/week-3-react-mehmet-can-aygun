@@ -1,0 +1,30 @@
+.not-found-page {
+  padding: 0 $px;
+
+  .not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h1 {
+      font-size: 96px;
+      color: $color-primary;
+      margin-bottom: 10px;
+    }
+
+    p {
+      width: 100%;
+      margin-bottom: 40px;
+      padding: 10px 0;
+      border-radius: 50px;
+      background-color: $color-secondary;
+    }
+
+    a {
+      text-decoration: none;
+      color: $color-tertiary;
+      font-weight: bold;
+    }
+  }
+}

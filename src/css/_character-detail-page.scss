@@ -1,0 +1,136 @@
+.character-detail-page {
+  padding: 0 $px;
+
+  .detail-title {
+    margin: 30px 0;
+
+    span {
+      color: $color-tertiary;
+    }
+  }
+}
+
+.character-container {
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3vw;
+
+  .img-container {
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+    align-self: start;
+
+    .img {
+      width: 100%;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      transition: transform 0.5s;
+    }
+  }
+
+  .img-container:hover .img {
+    transform: scale(1.1);
+  }
+
+  .info {
+    .detail-list > li {
+      font-size: 22px;
+      padding: 10px 6px;
+
+      span {
+        font-weight: bold;
+        color: $color-tertiary;
+      }
+
+      &:nth-child(even) {
+        background-color: rgba($color-primary, 0.5);
+      }
+
+      .episodes-list {
+        margin-top: 10px;
+
+        li {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+.back-link {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: $color-secondary;
+  color: darken($color-secondary, 36);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-link::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 10px);
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-right: 10px solid darken($color-secondary, 30);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  transition: left 0.3s;
+}
+
+.back-link:hover::before {
+  left: 14px;
+}
+
+// Media Queries
+
+@media (max-width: 768px) {
+  // Character Detail Page
+  .character-detail-page {
+    padding: 0 $px-sm;
+
+    .detail-title {
+      font-size: 24px;
+    }
+  }
+
+  .character-container {
+    grid-template-columns: 1fr;
+    gap: 3vw;
+
+    .img-container .img {
+      height: 50vw;
+    }
+
+    .info {
+      .detail-list li {
+        font-size: 16px;
+        padding: 8px 0;
+
+        .episodes-list {
+          margin-top: 0px;
+
+          li {
+            font-size: 14px;
+            padding: 4px;
+          }
+        }
+      }
+    }
+  }
+}
